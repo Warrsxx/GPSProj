@@ -1,0 +1,222 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+<div class="container-fluid">
+    <h4>Consultar Empresas</h4>
+    <br />
+    <br />
+    <div class="row g-6">
+        <div class="col-auto">
+            <label for="CNPJ" class="form-label">CNPJ</label>
+        </div>
+        <div class="col-3">
+            <input class="form-control"
+                   type="text"
+                   id="CNPJ"
+                   maxlength="18"
+                   inputmode="numeric"
+                   placeholder="Digite o CNPJ para Consulta"
+                   aria-label="CNPJinput">
+        </div>
+
+        <div class="col-2">
+            <div id="feedback">
+            </div>
+        </div>
+
+        <div class="col-auto">
+
+
+            <div class="tooltipCustom">
+                <button class="btn btn-success"
+                        id="btnPesquisar"
+                        disabled data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Tooltip on top">
+
+                    <i class="fas fa-search"></i>
+                </button>
+                <span class="tooltiptextCustom">Pesquisar CNPJ Receita</span>
+            </div>
+        </div>
+
+        <div class="col-auto">
+
+            <div class="tooltipCustom">
+                <button class="btn btn-primary" id="btnAddList" disabled>
+                    <i class="fas fa-plus-square"></i>
+                </button>
+                <span class="tooltiptextCustom">Adicionar à lista</span>
+            </div>
+        </div>
+
+
+        <div class="col-auto">
+
+            <div class="tooltipCustom">
+                <button class="btn btn-warning" id="btnPesquisarList" disabled>
+                    <i class="fas fa-search-plus"></i>
+                </button>
+                <span class="tooltiptextCustom">Pesquisar lista</span>
+            </div>
+
+        </div>
+
+        <div class="col-auto">
+
+            <div class="tooltipCustom">
+                <button id="btnEmpresasCadastradas" class="btn btn-primary">
+                    <i class="fas fa-database"></i>
+                </button>
+                <span class="tooltiptextCustom">Listar Empresas Cadastradas na Base</span>
+            </div>
+
+        </div>
+
+    </div>
+    <br />
+    <br />
+</div>
+<div class="container-fluid">
+<div class="container-fluid" id="divListPesq" style="display:none; ">
+
+        <div class="row g-6" id="divListP">
+            <div class="col-auto">
+                <h4>Lista de Pesquisa</h4>
+            </div>
+            <div class="col-auto" id="divBtnClose">
+                <div class="tooltipCustomL">
+                    <button class="btn btn-secondary btn-sm" id="btnClosePesq">
+                        <i class="fas fa-window-close"></i>
+                    </button>
+                    <span class="tooltiptextCustomL">Fechar</span>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div id="ListaPesquisa">
+                    <ul id="lstCnpj" class="ba">
+                    </ul>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+        <div class="container-fluid" id="divResPesq" style="display:none;">
+
+
+
+            <div class="row g-6" id="divResP">
+                <div class="col-auto">
+                    <h4>Resultado Pesquisa</h4>
+                </div>
+                <div class="col-auto" id="divBtnClose">
+                    <div class="tooltipCustomL">
+                        <button class="btn btn-secondary btn-sm" id="btnCloseRes">
+                            <i class="fas fa-window-close"></i>
+                        </button>
+                        <span class="tooltiptextCustomL">Fechar</span>
+                    </div>
+
+                </div>
+                <div class="col-auto">
+                    <div id="ResultadoPesquisa">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container-fluid" id="divEmpCad" style="display:none;">
+
+            <div class="row g-6" id="divEmpC">
+                <div class="col-auto">
+                    <h4>Empresas cadastradas</h4>
+                </div>
+
+                <div class="col-auto" id="divBtnClose">
+                    <div class="tooltipCustomL">
+                        <button class="btn btn-secondary btn-sm" id="btnCloseCad">
+                            <i class="fas fa-window-close"></i>
+                        </button>
+                        <span class="tooltiptextCustomL">Fechar</span>
+                    </div>
+
+
+                </div>
+                <div class="col-auto">
+                    <div id="EmpresasCadastradas">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<!-- Button trigger modal -->
+
+<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch static backdrop modal
+</button>-->
+
+<!-- Modal -->
+<!--<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <table id="tblEmpresaDetalhe">
+                    <tr><th>status</th><td id='status'></td></tr>
+                    <tr><th>message</th><td id='message'></td></tr>
+                    <tr><th>billing</th><td id='billing'></td></tr>
+                    <tr><th>cnpj</th><td id='cnpj'></td></tr>
+                    <tr><th>tipo</th><td id='tipo'></td></tr>
+                    <tr><th>abertura</th><td id='abertura'></td></tr>
+                    <tr><th>nome</th><td id='nome'></td></tr>
+                    <tr><th>fantasia</th><td id='fantasia'></td></tr>
+                    <tr><th>atividade_principal</th><td id='atividade_principal'></td></tr>
+                    <tr><th>atividades_secundarias</th><td id='atividades_secundarias'></td></tr>
+                    <tr><th>natureza_juridica</th><td id='natureza_juridica'></td></tr>
+                    <tr><th>logradouro</th><td id='logradouro'></td></tr>
+                    <tr><th>numero</th><td id='numero'></td></tr>
+                    <tr><th>complemento</th><td id='complemento'></td></tr>
+                    <tr><th>cep</th><td id='cep'></td></tr>
+                    <tr><th>bairro</th><td id='bairro'></td></tr>
+                    <tr><th>municipio</th><td id='municipio'></td></tr>
+                    <tr><th>uf</th><td id='uf'></td></tr>
+                    <tr><th>email</th><td id='email'></td></tr>
+                    <tr><th>telefone</th><td id='telefone'></td></tr>
+                    <tr><th>efr</th><td id='efr'></td></tr>
+                    <tr><th>situacao</th><td id='situacao'></td></tr>
+                    <tr><th>situacao</th><td id='situacao'></td></tr>
+                    <tr><th>motivo_situacao</th><td id='motivo_situacao'></td></tr>
+                    <tr><th>situacao_especial</th><td id='situacao_especial'></td></tr>
+                    <tr><th>data_situacao_especial</th><td id='data_situacao_especial'></td></tr>
+                    <tr><th>capital_social</th><td id='capital_social'></td></tr>
+                    <tr><th>qsa</th><td id='qsa'></td></tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+
+
+
+
+
+

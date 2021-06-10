@@ -1,0 +1,3 @@
+
+Add-Migration InitMigration -Context GpsDBContext -Project GPS.Repository
+update-database -Migration InitMigration -Context GpsDBContext -Project GPS.Repository
