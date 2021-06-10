@@ -18,17 +18,6 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    @*<ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                     </li>
-                     <li class="nav-item">
-                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                     </li>
-                     <li class="nav-item">
-                         <a class="nav-link text-dark" asp-area="" asp-controller="Empresa" asp-action="Index">Empresa</a>
-                     </li>
-                    </ul>*@
                 </div>
             </div>
         </nav>
@@ -41,21 +30,14 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - WebAppGPS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - WebAppGPS Projeto em desenvolvimento 
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
-
-    @*<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>*@
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-
     <script src="~/js/valida_cnpj.js" asp-append-version="true"></script>
     <script src="https://kit.fontawesome.com/31241cc322.js" crossorigin="anonymous"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
-
     <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>

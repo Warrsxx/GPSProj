@@ -2,11 +2,8 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-
-//ctrlShowContainers("#divListPesq", false);
-//ctrlShowContainers("#divResPesq", false);
-//ctrlShowContainers("#divEmpCad", false);
-
+ 
+/*Botão Listar Empresas Cadastradas*/
 
 $('#btnEmpresasCadastradas').click(function () {
     $('#EmpresasCadastradas').empty();
@@ -26,21 +23,15 @@ $('#btnEmpresasCadastradas').click(function () {
 });
 
 
-
-
+/*Botão Adicionar cnpj em Lista para Pesquisar*/
 
 $('#btnAddList').click(function () {
     $('#ResultadoPesquisa').empty();
 
-
-
     var cnpj = $("#CNPJ").val();
     cnpj = cnpj.toString();
 
-    
-
     var arr = [];
-
     var li = $("#ListaPesquisa ul li").toArray();
     var exist = false;
 
@@ -61,7 +52,7 @@ $('#btnAddList').click(function () {
         if (!exist) {
             arr.push(cnpj);
         } else {
-            alert('Valor já inserido na lista!');
+            alert('CNPJ já inserido na lista!');
             return;
         }
         
@@ -80,6 +71,8 @@ function addListItem(cnpj) {
     $("#ListaPesquisa ul").append("<li>" + cnpj + "</li>");
 }
 
+/*Botão Pesquisar Lista de cnpjs*/
+
 $('#btnPesquisarList').click(function () {
     pesquisaList();
     ctrlShowContainers('#divResPesq', true);
@@ -97,15 +90,6 @@ function pesquisaList()
         pesquisaEmpresas(lstcnpj);
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -141,7 +125,7 @@ function pesquisaEmpresas(cnpj) {
 
 $('#btnClosePesq').click(function () {
 
-    //alert('chegou');    
+    
     $('#lstCnpj').innerHTML=""
     ctrlShowContainers('#divListPesq', false);
 
@@ -152,7 +136,6 @@ $('#btnClosePesq').click(function () {
 });
 $('#btnCloseRes').click(function () {
 
-    //alert('chegou');    
     ctrlShowContainers('#divResPesq', false);
     $('#ResultadoPesquisa').empty();
 
@@ -160,7 +143,6 @@ $('#btnCloseRes').click(function () {
 });
 $('#btnCloseCad').click(function () {
 
-    //alert('chegou');    
     ctrlShowContainers('#divEmpCad', false);
     $('#EmpresasCadastradas').empty();
 
@@ -180,11 +162,6 @@ function ctrlShowContainers(div, show)
 function CreateTableFromJSON(data, element) {
 
     var divContainer = document.getElementById(element);
-
-
-    // EXTRACT VALUE FOR HTML HEADER. 
-
- 
     var col = [];
     
 
@@ -197,28 +174,21 @@ function CreateTableFromJSON(data, element) {
         }
     }
 
-    // CREATE DYNAMIC TABLE.
-
-
-
-
-
 
     var table = document.createElement("table");
     table.setAttribute("id", "tblEmpresas");
     table.setAttribute("style", "white-space: nowrap;");
+        
 
-    // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-
-    var tr = table.insertRow(-1);                   // TABLE ROW.
+    var tr = table.insertRow(-1);
 
     for (var i = 0; i < col.length; i++) {
-        var th = document.createElement("th");      // TABLE HEADER.
+        var th = document.createElement("th");
         th.innerHTML = col[i];
         tr.appendChild(th);
     }
 
-    // ADD JSON DATA TO THE TABLE AS ROWS.
+    
     for (var i = 0; i < data.length; i++) {
 
         tr = table.insertRow(-1);
@@ -226,8 +196,6 @@ function CreateTableFromJSON(data, element) {
 
         for (var j = 0; j < col.length; j++) {
             var tabCell = tr.insertCell(-1);
-
-            //console.log(data[i][col[j]]);
 
             var cell = data[i][col[j]];
 
@@ -247,16 +215,8 @@ function CreateTableFromJSON(data, element) {
                 var span = document.createElement("SPAN");
                 span.classList.add("tooltiptextCustom");
                 span.textContent = "Gravar";
-                    ///setAttribute("text", "Gravar dados na base");
 
-               
-
-                //var dataEmp = JSON.parse(data);
-
-
-                var dataEmp = JSON.parse(JSON.stringify(data))
-
-                //var dataEmp = data;
+                var dataEmp = JSON.parse(JSON.stringify(data));
 
                 console.log(dataEmp);
 
@@ -276,13 +236,13 @@ function CreateTableFromJSON(data, element) {
         }
     }
 
-    // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+    
 
-    //divContainer.innerHTML = "";
+    
     table.classList.add("table-bordered");
     table.classList.add("table-striped");
     table.classList.add("table-hover");
-    //table.classList.add("table-secondary");
+    
 
     divContainer.appendChild(table);
 }
@@ -313,10 +273,7 @@ function SalvarEmpresa (data) {
 function CreateTableFromJSONEmpCad(data,element) {
 
     var divContainer = document.getElementById(element);
-    // document.getElementById(element);
-
-    // EXTRACT VALUE FOR HTML HEADER. 
-    // ('Book ID', 'Book Name', 'Category' and 'Price')
+ 
     var col = [];
     for (var i = 0; i < data.length; i++) {
         for (var key in data[i]) {
@@ -326,24 +283,24 @@ function CreateTableFromJSONEmpCad(data,element) {
         }
     }
 
-    // CREATE DYNAMIC TABLE.
+ 
 
 
     var table = document.createElement("table");
     table.setAttribute("id", "tblEmpresasCad");
     table.setAttribute("style", "white-space: nowrap;");
 
-    // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+ 
 
-    var tr = table.insertRow(-1);                   // TABLE ROW.
+    var tr = table.insertRow(-1);                   
 
     for (var i = 0; i < col.length; i++) {
-        var th = document.createElement("th");      // TABLE HEADER.
+        var th = document.createElement("th");     
         th.innerHTML = col[i];
         tr.appendChild(th);
     }
 
-    // ADD JSON DATA TO THE TABLE AS ROWS.
+ 
     for (var i = 0; i < data.length; i++) {
 
         tr = table.insertRow(-1);
@@ -353,28 +310,15 @@ function CreateTableFromJSONEmpCad(data,element) {
             var tabCell = tr.insertCell(-1);
 
             tabCell.innerHTML = data[i][col[j]];
-
-            //if (data[i][col[j]] != null) {
-            //    if (data[i][col[j]].length > 0)
-            //    {
-            //        if (col[j] == "atividades_secundarias")
-            //        {
-            //            console.log(col[j]);
-            //            console.log(data[i][col[j]]);
-            //        }
-            //    }
-            //}
+ 
         }
     }
 
-    // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-
-    //divContainer.innerHTML = "";
+ 
     table.classList.add("table-bordered");
     table.classList.add("table-striped");
     table.classList.add("table-hover");
-    //table.classList.add("table-secondary");
-     
+ 
     divContainer.appendChild(table);
 }
 

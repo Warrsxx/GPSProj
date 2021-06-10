@@ -151,7 +151,6 @@ namespace GPS.WebApp.Controllers
                 if (response.IsSuccessStatusCode)
                 {  //GET
                     Empresa Empresa = await response.Content.ReadAsAsync<Empresa>();
-                    
                 }
             }
         }
