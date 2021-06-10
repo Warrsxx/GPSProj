@@ -16,7 +16,7 @@
         var str = document.getElementById("CNPJ").value
         if (isNaN(Number(str.charAt(i - 1)))) {
             document.getElementById("CNPJ").value = str.substr(0, i - 1);
-        } else if (Number(str.charAt(i - 1)) =='') {
+        } else if (str.charAt(i - 1) ===' ') {
             document.getElementById("CNPJ").value = str.substr(0, i - 1);
         }
     });
@@ -28,7 +28,7 @@
             document.getElementById("feedback").className = "valid-feedback d-block";
             document.getElementById("feedback").innerText ="Cnpj Válido"
             document.getElementById("btnPesquisar").disabled = false;
-            document.getElementById("btnPesquisarList").disabled = true;
+            document.getElementById("btnPesquisarList").disabled = false;
             document.getElementById("btnAddList").disabled = false;
         } else {
             document.getElementById("feedback").className = "invalid-feedback d-block";
